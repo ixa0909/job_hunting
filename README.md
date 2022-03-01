@@ -23,7 +23,7 @@ Thanks for your visiting here.<br>
 
 <br>
 
-## 目次　　　　　　 &emsp; &emsp;　 作成した流れ
+## 目次　　　　　　 &emsp; &emsp;　 作成の流れ
 * 概要　     &emsp;&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;&nbsp;&nbsp;1. 計画
 * 作成の流れ　&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;&thinsp;2. データセットの構築
 * ファイル説明　&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &thinsp;3. 機械学習モデルの作成
@@ -106,7 +106,7 @@ for i in range(0,len(race_data["県"]),9):
     else:
       race_data["県"].iat[j]=a.count(a[j%9])-1
 ```
-<br>　同着１位がいるレースをデータから除外するアルゴリズムです。<br>
+<br>　同着１位がいるレースのデータを除外するアルゴリズムです。<br>
 
 ```Python
 #１位が複数人いるデータを今回は削除
@@ -146,6 +146,7 @@ for i in del_index:
 ### 参考・引用元について
 [1]Webスクレイピングのためのコードの参考<br>
 https://qiita.com/GOTOinfinity/items/877fc90168d84d8d1297
+<br>
 [2]楽天Kドリームス<br>
 https://keirin.kdreams.jp/
 
