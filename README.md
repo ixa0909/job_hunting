@@ -13,7 +13,7 @@ Thanks for your visiting here.
 |**ツール**          |**Atom、VScode、Excel、flask**|
 
 
-![system](../img/system.png)
+![system](img/system.png)
 入力例）https://keirin.kdreams.jp/kochi/racedetail/7420220201010003/?l-id=l-pc-srdi-srdi-raceinfo_kaisai_detail_race_nav_btn-3
 （ただし、「楽天Kドリームス」に限る）
 
@@ -35,7 +35,7 @@ Thanks for your visiting here.
 4. 学習器の検証や精度向上
 5. 簡易的なWebアプリ化
 
-![plan](../img/plan.png)
+![plan](img/plan.png)
 
 ### ファイル説明
 |  ファイル・ディレクトリ（/）名  | 用途 |
