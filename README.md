@@ -13,29 +13,29 @@ Thanks for your visiting here.
 |**ツール**          |**Atom、VScode、Excel、flask**|
 
 
-![system](img/system.png)
-入力例）https://keirin.kdreams.jp/kochi/racedetail/7420220201010003/?l-id=l-pc-srdi-srdi-raceinfo_kaisai_detail_race_nav_btn-3
-（ただし、「楽天Kドリームス」に限る）
+&emsp;&emsp;![system](img/system.png)
 
-## 目次
-* 概要
-* 作成の流れ
-* ファイル説明
-* Webアプリ化
-* 苦労した点(2つ)
+<font color="Red">
+※
+</font>入力は出走表掲載のWebページのURL　（ただし、「楽天Kドリームス」に限る）
+
+例）https://keirin.kdreams.jp/kochi/racedetail/7420220201010003/?l-id=l-pc-srdi-srdi-raceinfo_kaisai_detail_race_nav_btn-3
+
+
+## 目次　　　　　　　 作成した流れ
+* 概要　     &emsp;&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;&nbsp;&nbsp;1. 計画
+* 作成の流れ　&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;&thinsp;2. データセットの構築
+* ファイル説明　&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &thinsp;3. 機械学習モデルの作成
+* Webアプリ化　&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &thinsp;4. 学習器の検証や精度向上
+* 苦労した点(2つ)　&emsp; &emsp; &emsp; &emsp; &emsp; &thinsp;5. 簡易的なWebアプリ化
 * アピールできる点(2つ)
 * 成長したこと(２つ)
 * 参考・引用元
 
 
-### 作成した流れ
-1. 計画
-2. データセットの構築
-3. 機械学習モデルの作成
-4. 学習器の検証や精度向上
-5. 簡易的なWebアプリ化
 
-![plan](img/plan.png)
+
+&emsp;&emsp;![plan](img/plan.png)
 
 ### ファイル説明
 |  ファイル・ディレクトリ（/）名  | 用途 |
@@ -61,7 +61,7 @@ Thanks for your visiting here.
 </font>
 データの取得のためのWebスクレイピングのコードは[1]を主に参考にしています。Webスクレイピングのコード内においては、独自のコードであることを主張したい箇所にはコメントアウトを２行記述し、
 
-```Python3　:　例
+```Python　
 例１）
 #-----------------
 #レース出場者が9人に未たない時に空データを加える
@@ -90,15 +90,50 @@ print(s[s.find("雨"):])
 
 ### アピールできる2点
 * **自作アルゴリズム**
-県
-データの１次化
+競輪ではレースに同じ県所属の選手が何人いるかが重要な要素の１つなので、それをデータとして得るためのアルゴリズムです。
+```Python
+#--------------------
+#同じ県の人が何人いるかのデータを作成
+for i in range(0,len(race_data["県"]),9):
+  data=race_data["県"][i:i+9]
+  a=data.tolist()
+  #print(race_data["県"][i:i+9])
+  for j in range(i,i+9):
+    if a[j%9] is None:
+      race_data["県"][j]=0
+    else:
+      race_data["県"].iat[j]=a.count(a[j%9])-1
+```
+同着１位がいるレースをデータから除外するアルゴリズムです。
+```Python
+#１位が複数人いるデータを今回は削除
+#教師データとしてあり得るもの
+c0=[1,0,0,0,0,0,0,0,0];c1=[0,1,0,0,0,0,0,0,0];c2=[0,0,1,0,0,0,0,0,0];c3=[0,0,0,1,0,0,0,0,0];c4=[0,0,0,0,1,0,0,0,0];c5=[0,0,0,0,0,1,0,0,0];c6=[0,0,0,0,0,0,1,0,0];c7=[0,0,0,0,0,0,0,1,0];c8=[0,0,0,0,0,0,0,0,1]
 
-* **効率的に無駄ないシステム作成**
-作成期間を4カ月と定め、優先順や並行的にできる作業を見極めた上で、効率的に速くできるように計画を考え実行しました。また、工夫として個々の作業に制限時間を設け、段階的な作成や改善により効率を上げられるようにしました。
+count=0
+del_index=[]
+for data_y in y_train:
+    if data_y!=c0 and data_y!=c1 and data_y!=c2 and data_y!=c3 and data_y!=c4 and data_y!=c5 and data_y!=c6 and data_y!=c7 and data_y!=c8:
+        del_index.append(count)
+    count=count+1
+
+#データを削除するとインデックスにずれが生じる対策
+number_del=0
+for i in del_index:
+    del y_train[i-number_del]
+    number_del=number_del+1
+```
+
+
+* **効率的で速いシステム作成**
+作成期間を4カ月と定めていたので、優先順や並行的にできる作業を見極めた上で、効率的に速くできるように計画を考え実行しました。また、工夫として個々の作業に制限時間を設け、段階的な作成や改善により効率を上げられるようにしました。
 
 
 
-### 成長したこと(3つ)
+
+
+
+### 成長したこと(2つ)
 * 計画力・作業を効率的に速くこなす力
 * システムの質を高める視点変換
 
@@ -114,5 +149,3 @@ https://keirin.kdreams.jp/
 <br>
 // Copyright © 2022 K.Yabu All rights reserved.
 </font>
-
-
