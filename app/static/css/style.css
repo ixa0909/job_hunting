@@ -1,0 +1,24 @@
+.btn{
+    
+    border-radius:5px;
+    background-color:rgb(238, 79, 16);
+    padding: auto;
+    text-decoration:dashed;
+    color: rgb(19, 20, 20);
+    
+    text-align: center;
+
+}
+h1 {
+    text-align: center;
+}
+.race{
+    text-align: center;
+    background-color: green;
+    background-repeat: no-repeat;
+    top:100px;
+    height:auto;
+    
+}
+
+

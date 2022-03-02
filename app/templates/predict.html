@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Predict Page</title>
+        <link rel="stylesheet" href="../static/css/style_predict.css">
+    </head>
+
+    <body>
+    <h1>予測してほしいレースの出走表が掲載されているWebページのURLを入力してください</h1>
+    <h2><font color="blue">例）https://keirin.kdreams.jp/kochi/racedetail/7420220201010003/?l-id=l-pc-srdi-srdi-raceinfo_kaisai_detail_race_nav_btn-3</font></h2>
+    <h3><font color="Red">ただし、「楽天Kドリームス」に限ります</font></h3>
+    <div>
+        <form action="/predict" method="POST">
+            <div class="input">
+                <input name="url" type="text" placeholder="http...">
+                <input type="submit" value="予測" >
+            </div>
+            
+        
+        {% if prediction %}
+        
+        <p><font size="5">1位となる選手の車番が<font color"Red" size="7">{{prediction}}</font>の選手と予測しました!!</font></p>
+        {%else %}
+        <p><font size="5">結果をここに表示します!</font></p>
+        {%endif%}
+   
+    
+        </form>
+    </div>
+    
+
+    </body>
+</html>

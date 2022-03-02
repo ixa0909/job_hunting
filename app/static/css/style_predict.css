@@ -1,0 +1,15 @@
+h1{
+    text-align: center;
+}
+
+.input{
+    text-align: center;
+    width:100%;
+    size: 100px;
+    line-height: 3;
+}
+
+html {
+    background-color: rgb(174, 245, 245);
+    
+}
